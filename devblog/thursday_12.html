@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="../favicon.png" />
+		<meta name="viewport" content="width=device-width" />
+		<meta http-equiv="content-security-policy" content="">
+		<link href="../_app/immutable/assets/_layout-8003c18b.css" rel="stylesheet">
+		<link href="../_app/immutable/assets/2-c12348e4.css" rel="stylesheet">
+		<link rel="modulepreload" href="../_app/immutable/start-b807eb1f.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/index-0726a72e.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/singletons-8844806b.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/preload-helper-41c905a7.js">
+		<link rel="modulepreload" href="../_app/immutable/components/pages/_layout.svelte-68653f26.js">
+		<link rel="modulepreload" href="../_app/immutable/modules/pages/_layout.js-9cbb603b.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/_layout-da46b06b.js">
+		<link rel="modulepreload" href="../_app/immutable/components/pages/devblog/_path_/_page.svelte-d66b4bdc.js">
+		<link rel="modulepreload" href="../_app/immutable/modules/pages/devblog/_path_/_page.js-c97a7772.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/_page-d130c93b.js"><!-- HEAD_svelte-1lc4dl3_START --><link rel="stylesheet" href="/pico.min.css"><style>nav {
+      margin-left: 10%;
+      margin-right: 10%;
+    }
+  </style><!-- HEAD_svelte-1lc4dl3_END -->
+	</head>
+	<body>
+		<div style="display: contents">
+
+
+
+
+<nav><ul><li><a href="/">Hem</a></li>
+    <li><a href="/devblog">Blog</a></li></ul></nav>
+
+<main class="container-fluid"><hr>
+
+  <main class="container">
+
+
+<article><h1>Thursday, january 12th</h1>
+  <p>Published: 2023-01-12</p>
+  <p>Det jag ändrade idag i page.svelte:</p>
+<p>*Antalet “clicks” som ges vid start från 100 till 0. Se kod nedan.</p>
+<pre class="language-css"><!-- HTML_TAG_START --><code class="language-css">&lt;script>
+    let clicks = 0<span class="token punctuation">;</span>
+    let multiplier = 1<span class="token punctuation">;</span>
+    let workers = []<span class="token punctuation">;</span>
+    let worker_multiplier = 1<span class="token punctuation">;</span></code><!-- HTML_TAG_END --></pre>
+<p>*Antalet “workers” visas på sidan. Se kod nedan.</p>
+<pre class="language-css"><!-- HTML_TAG_START --><code class="language-css">    <span class="token selector">&lt;span>Workers x</span> <span class="token punctuation">&#123;</span>workers.length<span class="token punctuation">&#125;</span>&lt;/span></code><!-- HTML_TAG_END --></pre>
+<p>*Kostnaden på uppgraderingarna så att siffrorna som stod på knapparna stämmer överens med den faktiska Kostnaden. Se koden nedan.</p>
+<p>Innan:</p>
+<pre class="language-css"><!-- HTML_TAG_START --><code class="language-css">    <span class="token selector">&lt;span></span><span class="token punctuation">&#123;</span>upgrade.cost * worker_multiplier<span class="token punctuation">&#125;</span>&lt;/span></code><!-- HTML_TAG_END --></pre>
+<p>Efter:</p>
+<pre class="language-css"><!-- HTML_TAG_START --><code class="language-css">    <span class="token selector">&lt;span></span><span class="token punctuation">&#123;</span>upgrade.cost<span class="token punctuation">&#125;</span>&lt;/span></code><!-- HTML_TAG_END --></pre>
+<p>*Jag la till variabeln “i” som ökar med 1 för varje upgradering i “upgrades”, samt att kostnaden för uppgraderingen som gås igenom just då multipliceras med 1.5. Se kod nedan.</p>
+<p>Innan:</p>
+<pre class="language-css"><!-- HTML_TAG_START --><code class="language-css">    <span class="token punctuation">&#123;</span>#each upgrades as upgrade<span class="token punctuation">&#125;</span>
+            <span class="token selector">&lt;button
+            class="upgrade"
+            on:click=</span><span class="token punctuation">&#123;</span><span class="token selector">() =></span> <span class="token punctuation">&#123;</span>
+                <span class="token selector">if (clicks >= upgrade.cost)</span> <span class="token punctuation">&#123;</span>
+                <span class="token selector">if (upgrade.multiplier)</span> <span class="token punctuation">&#123;</span>
+                    multiplier = multiplier * upgrade.multiplier<span class="token punctuation">;</span>
+                    clicks -= upgrade.cost<span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+                <span class="token selector">if (upgrade.worker &amp;&amp; clicks)</span> <span class="token punctuation">&#123;</span>
+                    worker_multiplier = worker_multiplier * 2<span class="token punctuation">;</span>
+                    workers = [upgrade.name<span class="token punctuation">,</span> ...workers]<span class="token punctuation">;</span>
+                    <span class="token comment">/* start "clicking" every 1000 ms */</span>
+                    <span class="token function">setInterval</span><span class="token punctuation">(</span>increment<span class="token punctuation">,</span> 1000<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    clicks -= upgrade.cost<span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span></code><!-- HTML_TAG_END --></pre>
+<p>Efter:</p>
+<pre class="language-css"><!-- HTML_TAG_START --><code class="language-css">    <span class="token punctuation">&#123;</span>#each upgrades as upgrade<span class="token punctuation">,</span>i<span class="token punctuation">&#125;</span>
+            <span class="token selector">&lt;button
+            class="upgrade"
+            on:click=</span><span class="token punctuation">&#123;</span><span class="token selector">() =></span> <span class="token punctuation">&#123;</span>
+                <span class="token selector">if (clicks >= upgrade.cost)</span> <span class="token punctuation">&#123;</span>
+                <span class="token selector">if (upgrade.multiplier)</span> <span class="token punctuation">&#123;</span>
+                    multiplier = multiplier * upgrade.multiplier<span class="token punctuation">;</span>
+                    clicks -= upgrade.cost<span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+                <span class="token selector">if (upgrade.worker &amp;&amp; clicks)</span> <span class="token punctuation">&#123;</span>
+                    worker_multiplier = worker_multiplier * 2<span class="token punctuation">;</span>
+                    workers = [upgrade.name<span class="token punctuation">,</span> ...workers]<span class="token punctuation">;</span>
+                    <span class="token comment">/* start "clicking" every 1000 ms */</span>
+                    <span class="token function">setInterval</span><span class="token punctuation">(</span>increment<span class="token punctuation">,</span> 1000<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    clicks -= upgrade.cost<span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+                upgrades[i].cost *= 1.5</code><!-- HTML_TAG_END --></pre></article></main></main>
+
+
+		<script type="module" data-sveltekit-hydrate="1fx1qsa">
+			import { start } from "../_app/immutable/start-b807eb1f.js";
+
+			start({
+				env: {},
+				paths: {"base":"","assets":""},
+				target: document.querySelector('[data-sveltekit-hydrate="1fx1qsa"]').parentNode,
+				version: "1674126495617",
+				hydrate: {
+					node_ids: [0, 4],
+					data: [null,null],
+					form: null
+				}
+			});
+		</script>
+	</div>
+	</body>
+</html>

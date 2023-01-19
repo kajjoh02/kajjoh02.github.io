@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="../favicon.png" />
+		<meta name="viewport" content="width=device-width" />
+		<meta http-equiv="content-security-policy" content="">
+		<link href="../_app/immutable/assets/_layout-8003c18b.css" rel="stylesheet">
+		<link href="../_app/immutable/assets/2-c12348e4.css" rel="stylesheet">
+		<link rel="modulepreload" href="../_app/immutable/start-b807eb1f.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/index-0726a72e.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/singletons-8844806b.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/preload-helper-41c905a7.js">
+		<link rel="modulepreload" href="../_app/immutable/components/pages/_layout.svelte-68653f26.js">
+		<link rel="modulepreload" href="../_app/immutable/modules/pages/_layout.js-9cbb603b.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/_layout-da46b06b.js">
+		<link rel="modulepreload" href="../_app/immutable/components/pages/devblog/_path_/_page.svelte-d66b4bdc.js">
+		<link rel="modulepreload" href="../_app/immutable/modules/pages/devblog/_path_/_page.js-c97a7772.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/_page-d130c93b.js"><!-- HEAD_svelte-1lc4dl3_START --><link rel="stylesheet" href="/pico.min.css"><style>nav {
+      margin-left: 10%;
+      margin-right: 10%;
+    }
+  </style><!-- HEAD_svelte-1lc4dl3_END -->
+	</head>
+	<body>
+		<div style="display: contents">
+
+
+
+
+<nav><ul><li><a href="/">Hem</a></li>
+    <li><a href="/devblog">Blog</a></li></ul></nav>
+
+<main class="container-fluid"><hr>
+
+  <main class="container">
+
+
+<article><h1>Thursday, january 19th</h1>
+  <p>Published: 2023-01-19</p>
+  <p>Det här ändrade jag indag i page.svelte:</p>
+<p>*La till en händelse när musen ligger över reset knappen, knappen “border” blir större och den ändrar färg, se kod nedan</p>
+<pre class="language-css"><!-- HTML_TAG_START --><code class="language-css"><span class="token selector">.reset:hover</span> <span class="token punctuation">&#123;</span>
+    <span class="token property">border</span><span class="token punctuation">:</span> 6px solid <span class="token function">rgb</span><span class="token punctuation">(</span>11<span class="token punctuation">,</span> 8<span class="token punctuation">,</span> 139<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token property">color</span><span class="token punctuation">:</span> <span class="token function">rgb</span><span class="token punctuation">(</span>199<span class="token punctuation">,</span> 198<span class="token punctuation">,</span> 246<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span></code><!-- HTML_TAG_END --></pre>
+<p>*Ändrade storleken på “clickerns” border när musen ligger över den, se kod nedan.</p>
+<p>Innan:</p>
+<pre class="language-css"><!-- HTML_TAG_START --><code class="language-css"><span class="token property">border</span><span class="token punctuation">:</span> 12px solid <span class="token function">rgb</span><span class="token punctuation">(</span>11<span class="token punctuation">,</span> 8<span class="token punctuation">,</span> 139<span class="token punctuation">)</span><span class="token punctuation">;</span></code><!-- HTML_TAG_END --></pre>
+<p>Efter:</p>
+<pre class="language-css"><!-- HTML_TAG_START --><code class="language-css"><span class="token property">border</span><span class="token punctuation">:</span> 14px solid <span class="token function">rgb</span><span class="token punctuation">(</span>11<span class="token punctuation">,</span> 8<span class="token punctuation">,</span> 139<span class="token punctuation">)</span><span class="token punctuation">;</span></code><!-- HTML_TAG_END --></pre></article></main></main>
+
+
+		<script type="module" data-sveltekit-hydrate="wqkqxy">
+			import { start } from "../_app/immutable/start-b807eb1f.js";
+
+			start({
+				env: {},
+				paths: {"base":"","assets":""},
+				target: document.querySelector('[data-sveltekit-hydrate="wqkqxy"]').parentNode,
+				version: "1674126495617",
+				hydrate: {
+					node_ids: [0, 4],
+					data: [null,null],
+					form: null
+				}
+			});
+		</script>
+	</div>
+	</body>
+</html>
