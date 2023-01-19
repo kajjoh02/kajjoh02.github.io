@@ -1,0 +1,29 @@
+---
+title: Thursday, january 19th
+date: "2023-01-19"
+---
+
+Det här ändrade jag indag i page.svelte:
+
+*La till en händelse när musen ligger över reset knappen, knappen "border" blir större och den ändrar färg, se kod nedan
+
+```css
+.reset:hover {
+    border: 6px solid rgb(11, 8, 139);
+    color: rgb(199, 198, 246);
+  }
+```
+
+*Ändrade storleken på "clickerns" border när musen ligger över den, se kod nedan.
+
+    Innan:
+
+```css
+border: 12px solid rgb(11, 8, 139);
+```
+
+    Efter:
+
+```css
+border: 14px solid rgb(11, 8, 139);
+```

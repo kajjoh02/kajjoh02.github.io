@@ -1,0 +1,113 @@
+---
+title: Tuesday, january 17th
+date: "2023-01-17"
+---
+
+Det här ändrade jag idag i page.svelte:
+
+*Så att när kostnaden för en "upgrade" ökar rundas talet upp så att det blir ett heltal istället för ett tal med massor med decimaler, se kod nedan.
+
+    Innan:
+
+```css
+upgrades[i].cost*=1.5
+```
+
+    Efter:
+
+```css
+upgrades[i].cost = Math.round(upgrades[i].cost*1.5)
+```
+
+*La till en händelse när musen ligger över "clicker" ändrar dess "border" färg och storlek samt att textfärgen ändras, se kod nedan.
+
+```css
+.clicker:hover {
+    border: 12px solid rgb(11, 8, 139);
+    color:  rgb(199, 198, 246);
+  }
+```
+
+*La till en händelse när musen ligger över en "worker" då ändrar dess "border" storlek och färg och textfärgen ändras, se kod nedan.
+
+```css
+.worker:hover {
+    border: 2px solid rgb(9, 7, 119);
+    color:  rgb(199, 198, 246);
+  }
+```
+
+*La till en händelse när musen ligger över en "upgrade" då ändrar dess "border" storlek och färg samt att textfärgen ändras, se kod nedan.
+
+```css
+.upgrade:hover {
+    border: 5px solid rgb(11, 8, 139);
+    color: rgb(199, 198, 246);
+  }
+```
+*Ändrade namnet på "Doubler" till "Muliplier" och dess "multiplier" från 2 till 1.5, se kod nedan.
+
+    Innan:
+
+```css
+{ cost: 15, name: "Multiplier", multiplier: 1.5, worker: 0 },
+```
+
+    Efter:
+
+```css   
+{ cost: 15, name: "Multiplier", multiplier: 1.5, worker: 0 },
+```
+
+*Ändrade så att då multipliern bestämms rundas tallet upp, se kod nedan.
+
+    Innan:
+
+```css
+multiplier = multiplier * upgrade.multiplier;
+```
+
+    Efter:
+
+```css
+multiplier = Math.round(multiplier * upgrade.multiplier);
+```
+
+*Jag skapade en ny klass som heter "reset" och gav den samma bakgrundsbild och border som "upgrades", se kod nedan.
+
+```css
+.reset{
+    border: 4px solid rgb(4, 3, 67);
+    background-color: rgb(4, 3, 67);
+    background-size: cover;
+    background-image: url("https://th.bing.com/th/id/OIP.jkKyrzJFUi853uZuy06uVwHaEK?w=333&h=187&c=7&r=0&o=5&dpr=1.3&pid=1.7");
+  }
+```
+
+*Jag skapade en tom lista vid namn intervalid, se kod nedan.
+
+```css
+let intervalId = []
+```
+
+*Jag la till en "button" som heter "reset" och när den klickas på nollställs alla variabler till deras ursprungsvärden, se kod nedan.
+
+```css
+<button class="reset"   on:click={()=> {
+  clicks = 0;
+  multiplier = 1;
+  workers =[];
+  worker_multiplier= 1;
+  console.log("reset")
+  intervalId.forEach(id => {
+    clearInterval(id)
+
+  });
+  upgrades = [
+    {cost: 15, name: "Multiplier", multiplier: 1.5, worker: 0},
+    {cost: 5 , name: "Worker", multiplier: 0, worker: 1},
+  ];
+}}>
+  Reset  
+  </button>
+```

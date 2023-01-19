@@ -1,0 +1,74 @@
+---
+title: Thursday, january 12th
+date: "2023-01-12"
+---
+
+Det jag ändrade idag i page.svelte:
+
+*Antalet "clicks" som ges vid start från 100 till 0. Se kod nedan.
+
+```css
+<script>
+    let clicks = 0;
+    let multiplier = 1;
+    let workers = [];
+    let worker_multiplier = 1;
+```
+*Antalet "workers" visas på sidan. Se kod nedan.
+
+```css
+    <span>Workers x {workers.length}</span>
+```
+
+*Kostnaden på uppgraderingarna så att siffrorna som stod på knapparna stämmer överens med den faktiska Kostnaden. Se koden nedan.
+    
+    Innan:
+```css
+    <span>{upgrade.cost * worker_multiplier}</span>
+```
+    Efter:
+```css
+    <span>{upgrade.cost}</span>
+```
+
+*Jag la till variabeln "i" som ökar med 1 för varje upgradering i "upgrades", samt att kostnaden för uppgraderingen som gås igenom just då multipliceras med 1.5. Se kod nedan.
+    
+    Innan:
+```css
+    {#each upgrades as upgrade}
+            <button
+            class="upgrade"
+            on:click={() => {
+                if (clicks >= upgrade.cost) {
+                if (upgrade.multiplier) {
+                    multiplier = multiplier * upgrade.multiplier;
+                    clicks -= upgrade.cost;
+                }
+                if (upgrade.worker && clicks) {
+                    worker_multiplier = worker_multiplier * 2;
+                    workers = [upgrade.name, ...workers];
+                    /* start "clicking" every 1000 ms */
+                    setInterval(increment, 1000);
+                    clicks -= upgrade.cost;
+                }
+```
+    Efter:
+```css
+    {#each upgrades as upgrade,i}
+            <button
+            class="upgrade"
+            on:click={() => {
+                if (clicks >= upgrade.cost) {
+                if (upgrade.multiplier) {
+                    multiplier = multiplier * upgrade.multiplier;
+                    clicks -= upgrade.cost;
+                }
+                if (upgrade.worker && clicks) {
+                    worker_multiplier = worker_multiplier * 2;
+                    workers = [upgrade.name, ...workers];
+                    /* start "clicking" every 1000 ms */
+                    setInterval(increment, 1000);
+                    clicks -= upgrade.cost;
+                }
+                upgrades[i].cost *= 1.5
+```
